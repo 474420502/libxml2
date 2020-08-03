@@ -5,49 +5,77 @@ package dom
 import (
 	"fmt"
 
-	"github.com/lestrrat-go/libxml2/clib"
-	"github.com/lestrrat-go/libxml2/types"
+	"github.com/474420502/libxml2/clib"
+	"github.com/474420502/libxml2/types"
 )
 
 func wrapNamespaceNode(ptr uintptr) *Namespace {
 	var n Namespace
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*Namespace).Free()
+	// 	return true
+	// })
 	return &n
 }
 
 func wrapAttributeNode(ptr uintptr) *Attribute {
 	var n Attribute
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*Attribute).Free()
+	// 	return true
+	// })
 	return &n
 }
 
 func wrapCDataSectionNode(ptr uintptr) *CDataSection {
 	var n CDataSection
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*CDataSection).Free()
+	// 	return true
+	// })
 	return &n
 }
 
 func wrapCommentNode(ptr uintptr) *Comment {
 	var n Comment
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*Comment).Free()
+	// 	return true
+	// })
 	return &n
 }
 
 func wrapElementNode(ptr uintptr) *Element {
 	var n Element
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*Element).Free()
+	// 	return true
+	// })
 	return &n
 }
 
 func wrapTextNode(ptr uintptr) *Text {
 	var n Text
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*Text).Free()
+	// 	return true
+	// })
 	return &n
 }
 
 func wrapPiNode(ptr uintptr) *Pi {
 	var n Pi
 	n.ptr = ptr
+	// runtime.SetFinalizer(&n, func(obj interface{}) bool {
+	// 	obj.(*Pi).Free()
+	// 	return true
+	// })
 	return &n
 }
 

@@ -1,19 +1,20 @@
 package dom
 
 import (
+	"runtime"
 	"sync"
 
-	"github.com/lestrrat-go/libxml2/xpath"
+	"github.com/474420502/libxml2/xpath"
 )
 
 var docPool sync.Pool
 
 func init() {
 	SetupXPathCallback()
-	docPool = sync.Pool{}
-	docPool.New = func() interface{} {
-		return Document{}
-	}
+	// docPool = sync.Pool{}
+	// docPool.New = func() interface{} {
+	// 	return Document{}
+	// }
 }
 
 func SetupXPathCallback() {
@@ -21,8 +22,15 @@ func SetupXPathCallback() {
 }
 
 func WrapDocument(n uintptr) *Document {
-	doc := docPool.Get().(Document)
+	// doc := docPool.Get().(Document)
+	doc := &Document{}
 	doc.mortal = false
 	doc.ptr = n
-	return &doc
+
+	runtime.SetFinalizer(doc, func(obj interface{}) bool {
+		obj.(*Document).Free()
+		return true
+	})
+
+	return doc
 }

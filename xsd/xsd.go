@@ -17,8 +17,10 @@
 package xsd
 
 import (
-	"github.com/lestrrat-go/libxml2/clib"
-	"github.com/lestrrat-go/libxml2/types"
+	"runtime"
+
+	"github.com/474420502/libxml2/clib"
+	"github.com/474420502/libxml2/types"
 	"github.com/pkg/errors"
 )
 
@@ -31,7 +33,13 @@ func Parse(buf []byte) (*Schema, error) {
 		return nil, errors.Wrap(err, "failed to parse input")
 	}
 
-	return &Schema{ptr: sptr}, nil
+	s := &Schema{ptr: sptr}
+	runtime.SetFinalizer(s, func(obj interface{}) bool {
+		obj.(*Schema).Free()
+		return true
+	})
+
+	return s, nil
 }
 
 // ParseFromFile is used to parse an XML schema using only the file path.
@@ -42,7 +50,13 @@ func ParseFromFile(path string) (*Schema, error) {
 		return nil, errors.Wrap(err, "failed to parse input from file")
 	}
 
-	return &Schema{ptr: sptr}, nil
+	s := &Schema{ptr: sptr}
+	runtime.SetFinalizer(s, func(obj interface{}) bool {
+		obj.(*Schema).Free()
+		return true
+	})
+
+	return s, nil
 }
 
 // Pointer returns the underlying C struct

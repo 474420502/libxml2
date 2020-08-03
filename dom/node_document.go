@@ -1,8 +1,8 @@
 package dom
 
 import (
-	"github.com/lestrrat-go/libxml2/clib"
-	"github.com/lestrrat-go/libxml2/types"
+	"github.com/474420502/libxml2/clib"
+	"github.com/474420502/libxml2/types"
 	"github.com/pkg/errors"
 )
 

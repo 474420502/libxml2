@@ -1,6 +1,6 @@
 package xpath
 
-import "github.com/lestrrat-go/libxml2/types"
+import "github.com/474420502/libxml2/types"
 
 // String returns the string component of the result, and as a side effect
 // releases the Result by calling Free() on it. Use this if you do not
@@ -39,7 +39,7 @@ func Number(r types.XPathResult, err error) float64 {
 }
 
 // NodeList returns the nodes associated with this result, and as a side effect
-// releases the result by calling Free() on it. Use this if you do not 
+// releases the result by calling Free() on it. Use this if you do not
 // really care about the error value from Find().
 func NodeList(r types.XPathResult, err error) types.NodeList {
 	if err != nil {

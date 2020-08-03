@@ -1,7 +1,7 @@
 package xpath
 
 import (
-	"github.com/lestrrat-go/libxml2/types"
+	"github.com/474420502/libxml2/types"
 )
 
 // NodeIterator is a way to get at a list of nodes returned

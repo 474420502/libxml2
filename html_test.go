@@ -3,8 +3,8 @@ package libxml2_test
 import (
 	"testing"
 
-	"github.com/lestrrat-go/libxml2"
-	"github.com/lestrrat-go/libxml2/xpath"
+	"github.com/474420502/libxml2"
+	"github.com/474420502/libxml2/xpath"
 	"github.com/stretchr/testify/assert"
 )
 
