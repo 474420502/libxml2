@@ -24,7 +24,6 @@ package xpath
 
 import (
 	"fmt"
-	"runtime"
 
 	"github.com/474420502/libxml2/clib"
 	"github.com/474420502/libxml2/types"
@@ -224,10 +223,10 @@ func (x *Context) FindExpr(expr types.XPathExpression) (types.XPathResult, error
 	}
 
 	r := &Object{ptr: res}
-	runtime.SetFinalizer(r, func(obj interface{}) bool {
-		obj.(types.XPathResult).Free()
-		return true
-	})
+	// runtime.SetFinalizer(r, func(obj interface{}) bool {
+	// 	obj.(types.XPathResult).Free()
+	// 	return true
+	// })
 
 	return r, nil
 }
