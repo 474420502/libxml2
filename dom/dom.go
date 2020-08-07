@@ -13,7 +13,7 @@ func init() {
 	SetupXPathCallback()
 	docPool = sync.Pool{}
 	docPool.New = func() interface{} {
-		return Document{}
+		return &Document{}
 	}
 }
 
@@ -22,16 +22,16 @@ func SetupXPathCallback() {
 }
 
 func WrapDocument(n uintptr) *Document {
-	doc := docPool.Get().(Document)
+	doc := docPool.Get().(*Document)
 	// doc := &Document{}
 	doc.mortal = false
 	doc.ptr = n
 
-	runtime.SetFinalizer(&doc, func(obj interface{}) bool {
-		obj.(*Document).AutoFree()
+	runtime.SetFinalizer(doc, func(obj interface{}) bool {
+		obj.(*Document).Free()
 		docPool.Put(obj)
 		return true
 	})
 
-	return &doc
+	return doc
 }
