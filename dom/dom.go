@@ -7,11 +7,11 @@ import (
 	"github.com/474420502/libxml2/xpath"
 )
 
-var docPool sync.Pool
+var docPool *sync.Pool
 
 func init() {
 	SetupXPathCallback()
-	docPool = sync.Pool{}
+	docPool = &sync.Pool{}
 	docPool.New = func() interface{} {
 		return &Document{}
 	}
