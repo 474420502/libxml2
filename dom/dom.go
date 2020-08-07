@@ -29,6 +29,7 @@ func WrapDocument(n uintptr) *Document {
 
 	runtime.SetFinalizer(&doc, func(obj interface{}) bool {
 		obj.(*Document).AutoFree()
+		docPool.Put(obj)
 		return true
 	})
 
