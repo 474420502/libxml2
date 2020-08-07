@@ -11,10 +11,10 @@ var docPool sync.Pool
 
 func init() {
 	SetupXPathCallback()
-	// docPool = sync.Pool{}
-	// docPool.New = func() interface{} {
-	// 	return Document{}
-	// }
+	docPool = sync.Pool{}
+	docPool.New = func() interface{} {
+		return Document{}
+	}
 }
 
 func SetupXPathCallback() {
