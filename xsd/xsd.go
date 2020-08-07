@@ -51,10 +51,10 @@ func ParseFromFile(path string) (*Schema, error) {
 	}
 
 	s := &Schema{ptr: sptr}
-	runtime.SetFinalizer(s, func(obj interface{}) bool {
-		obj.(*Schema).Free()
-		return true
-	})
+	// runtime.SetFinalizer(s, func(obj interface{}) bool {
+	// 	obj.(*Schema).Free()
+	// 	return true
+	// })
 
 	return s, nil
 }

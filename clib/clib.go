@@ -570,7 +570,6 @@ func XMLCreateDocument(version, encoding string) uintptr {
 func XMLEncodeEntitiesReentrant(docptr *C.xmlDoc, s string) (*C.xmlChar, error) {
 	cent := stringToXMLChar(s)
 	defer C.free(unsafe.Pointer(cent))
-
 	return C.xmlEncodeEntitiesReentrant(docptr, cent), nil
 }
 

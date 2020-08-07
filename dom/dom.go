@@ -22,15 +22,15 @@ func SetupXPathCallback() {
 }
 
 func WrapDocument(n uintptr) *Document {
-	// doc := docPool.Get().(Document)
-	doc := &Document{}
+	doc := docPool.Get().(Document)
+	// doc := &Document{}
 	doc.mortal = false
 	doc.ptr = n
 
-	runtime.SetFinalizer(doc, func(obj interface{}) bool {
-		obj.(*Document).Free()
+	runtime.SetFinalizer(&doc, func(obj interface{}) bool {
+		obj.(*Document).AutoFree()
 		return true
 	})
 
-	return doc
+	return &doc
 }
